@@ -5,7 +5,7 @@ seats = [
   ["Gismo", "Shadow", nil, nil],
   ["Smokey","Toast","Pacha","Mau"]
 ]
- # pp seats[0]
+ 
 # Display the list of available seats to your user, like so:
 # Row 1 seat 1 is free.
 # Row 1 seat 3 is free.
@@ -14,22 +14,17 @@ seats = [
 # Row 3 seat 3 is free.
 # Row 3 seat 4 is free.
 
-# seats.each_with_index do |seat, row|
-#   if seat == nil
-#     puts "Row #{row} seat #{seat} is free."
-#   end
-# end
-
 seats.each_with_index do |row, i|
-  row.each_with_index do |seat, j|
+  row.each_with_index do |seat, position|
     if seat == nil
-      pp "Row #{i+1} seat #{j+1} is free."
+      pp "Row #{ i + 1 } seat #{ position + 1 } is free. Do you want to sit there? (y/n)"
+      user_answer = gets.chomp
+      if user_answer == 'y'
+        pp "What is your name?"
+        user_name = gets.chomp
+        seats[i][position] = user_name
+      end
     end
   end
 end
-
-
-# row.each_with_index |seat|
-# if seat == nil
-#   puts "Row #{row} seat #{seat} is free."
-# end
+pp seats
