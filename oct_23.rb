@@ -1,8 +1,10 @@
+require 'pry'
 def check_syntax(str)
   openables = {
     "(" => ")",
     "[" => "]",
-    "{" => "}"
+    "{" => "}",
+    "<" => ">"
   }
   open = []
   opening_chars = openables.keys
@@ -26,6 +28,7 @@ def check_syntax(str)
 
         if open.any? # it's the wrong kind of closing bracket
           puts "* You have a syntax error: there is an unexpected #{char} where there should be a #{required_char}"
+
         else # there's nothing to close
           puts "* You have a syntax error: there is an unexpected #{char} where there is nothing to close."
         end
@@ -38,22 +41,23 @@ def check_syntax(str)
   end
 
   if open.any?
-    required_char = openables[open.last]
+    required_char = openables[open.first]
     puts "* You have a syntax error: the string ended without a closing #{required_char}"
+
   end
 
   return open.empty?
 end
 
-puts check_syntax("(this)[] is some text")
-puts "*****"
-puts check_syntax("(this)] is some text")
-puts "*****"
-puts check_syntax("[(this] is some text")
-puts "*****"
-puts check_syntax("[this][ is some text")
-puts "*****"
-puts check_syntax("[this] is some text")
+# puts check_syntax("(this)[] is some text")
+# puts "*****"
+# puts check_syntax("(this)] is some text")
+# puts "*****"
+# puts check_syntax("[(this] is some text")
+# puts "*****"
+# puts check_syntax("[this][ is some text")
+# puts "*****"
+# puts check_syntax("[this] is some text")
 # The output should currently look like this:
 #
 # true
@@ -70,9 +74,24 @@ puts check_syntax("[this] is some text")
 # true
 
 
-# Exercise 1
-# New, improved error message:
+# EXERCISE 2
+# THE CORRECT VARIABLE THAT NEEDS TO BE PASSED IN FOR THIS IS char. IT CONTAINS ]. FIND A WAY TO MAKE IT A LOCAL VARIABLE IN THE FINAL IF STATEMENT.
+
+# Modify the code to make it work for angled brackets (< and >) as well.
 #
-# puts check_syntax("[(this] is some text")
+# The new output for these strings containing angled brackets should look like this:
+#
+puts check_syntax("<html> (this)[] is some text</html>")
+# true
+puts check_syntax("<html> (this)] is some text</html>")
+# * You have a syntax error: there is an unexpected ] where there is nothing to close.
+# false
+puts check_syntax("<html> [(this] is some text</html>")
 # * You have a syntax error: there is an unexpected ] where there should be a )
+# false
+puts check_syntax("<html> [this][ is some text</html")
+# * You have a syntax error: the string ended without a closing ]
+# false
+puts check_syntax("<html> [this] is some text</html")
+# * You have a syntax error: the string ended without a closing >
 # false
