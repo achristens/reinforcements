@@ -33,26 +33,20 @@ project = {
     }
   ]
 }
-function commandFleet(cars){
-  for (var number = 0; number < cars.length; number++){
-    var action = act(cars[number]);
-    var car = number + 1;
-    var results = "Car " + car + ": " + action;
-    console.log(results);
-  }
-  console.log("---");
-}
+
 
 // iterate over each 'step'
 // insert new key value with a commitee member names
 // loop back through names until steps are complete
 // iterate through each committee name, loop back through names
+var listMembers = project.committee;
+var count = 0;
 
-function updateTasks(){
-  project.steps.forEach(function(step){
-    step.person = "Hello");
-  })
-}
-// Update this object so that each step has the name of a committee member associated with it
-// (i.e. by adding an additional person property in each step object), and each committee member
-// has an equal number of tasks. Avoid typing out the committee members' names elsewhere in your code.
+project.steps.forEach(function(step) {
+  step.person = listMembers[count];
+  count ++;
+  if (count > listMembers.length){
+    count = 0;
+  }
+});
+console.log(project);
