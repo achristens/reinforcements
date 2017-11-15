@@ -1,4 +1,5 @@
 class Team
+  attr_accessor :name, :level, :members, :points
 
   def initialize(name, level, team_member_names)
     @name = name
@@ -16,8 +17,3 @@ class Team
   end
 
 end
-team = Team.new("Rainbow Squad", 2, ["Abby", "Meg", "Sarah"])
-
-test = team.to_hash
-
-puts test.class
